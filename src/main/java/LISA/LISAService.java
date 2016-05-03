@@ -33,7 +33,7 @@ public class LISAService extends LISAServiceCore {
             if (message instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) message;
                 String text = textMessage.getText();
-                System.out.println("a" + text);
+                System.out.println(text);
                 
 
             }
