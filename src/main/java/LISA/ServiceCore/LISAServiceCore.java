@@ -7,6 +7,8 @@ package LISA.ServiceCore;
 
 import LISA.ServiceCore.Publisher.Publisher;
 import LISA.ServiceCore.Subscriber.Subscriber;
+import com.google.common.collect.ListMultimap;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jms.Connection;
@@ -27,11 +29,17 @@ public abstract class LISAServiceCore extends Subscriber implements LISAServiceL
     protected Connection connection = null;
     protected String topicStr;
     protected ServiceState state;
+    protected String serviceID;
+    public ListMultimap<String, String> dataMapping;
 
     public LISAServiceCore(Connection connection, String topicIn) {
         this.connection = connection;
         this.topicStr = topicIn;
         this.state = ServiceState.INIT;
+
+    }
+
+    public void init() {
         createSession();
         createPublisher();
         createSubscriber(topicStr);
@@ -64,6 +72,16 @@ public abstract class LISAServiceCore extends Subscriber implements LISAServiceL
 
     public void setState(ServiceState state) {
         this.state = state;
+    }
+    public void setDataMap(ListMultimap map) {
+        this.dataMapping = map;
+    }
+    public String getServiceID() {
+        return serviceID;
+    }
+
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
     }
     //</editor-fold>
 }

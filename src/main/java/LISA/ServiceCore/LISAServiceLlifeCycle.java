@@ -11,8 +11,6 @@ package LISA.ServiceCore;
  */
 public interface LISAServiceLlifeCycle {
 
-    public abstract void init();
-
     public abstract boolean action();
 
     public abstract void end();

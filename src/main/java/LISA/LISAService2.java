@@ -17,11 +17,11 @@ import javax.jms.TextMessage;
  *
  * @author Linus
  */
-public class LISAService extends LISAServiceCore {
+public class LISAService2 extends LISAServiceCore {
 
     private int n = 0;
 
-    public LISAService(Connection connection, String topicStr) {
+    public LISAService2(Connection connection, String topicStr) {
         super(connection, topicStr);
 
     }
@@ -34,24 +34,25 @@ public class LISAService extends LISAServiceCore {
                 TextMessage textMessage = (TextMessage) message;
                 String text = textMessage.getText();
                 System.out.println(text);
+                if (text.equals("s2")) {
+                    dataMapping.put("s1", "hej");
+                    dataMapping.put("s1", "hej2");
+                }
                 
 
             }
         } catch (JMSException ex) {
-            Logger.getLogger(LISAService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LISAService1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    @Override
-    public void init() {
-        System.out.println("init of " + this);
-    }
+
 
     @Override
     public boolean action() {
 
-        System.out.println("action for " + this);
+        //System.out.println("action for " + this);
 
         return false;
     }

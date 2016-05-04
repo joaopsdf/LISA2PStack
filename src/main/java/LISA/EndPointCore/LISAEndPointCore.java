@@ -10,6 +10,8 @@ import LISA.ServiceCore.LISAServiceCore;
 import LISA.ServiceCore.LISAServiceCore.ServiceState;
 import LISA.Utils.Config.Config;
 import LISA.Utils.Config.ConfigFunctions;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.logging.Level;
@@ -31,6 +33,7 @@ public class LISAEndPointCore implements Runnable {
     private static Config config = null;
     public static final Thread endpointThread = new Thread(new LISAEndPointCore());
     public static HashMap<String, LISAServiceCore> services = new HashMap<String, LISAServiceCore>();
+    public static ListMultimap<String, String> dataMapping = ArrayListMultimap.create();
 
     protected LISAEndPointCore() {
         config = ConfigFunctions.getConfig();
@@ -66,11 +69,15 @@ public class LISAEndPointCore implements Runnable {
     public void run() {
         while (true) {
             for (Entry<String, LISAServiceCore> entry : services.entrySet()) {
+                
                 String key = entry.getKey();
                 LISAServiceCore s = entry.getValue();
                 ServiceState state = s.getState();
+                
                 if (state.equals(ServiceState.INIT)) {
                     s.init();
+                    s.setDataMap(dataMapping);
+                    s.setServiceID(key);
                     s.setState(ServiceState.ACTION);
                 }
                 if (state.equals(ServiceState.ACTION)) {
