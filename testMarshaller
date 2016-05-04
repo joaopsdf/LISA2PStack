@@ -1,0 +1,16 @@
+{
+  "LISAMessage":{
+   "messageBody" : {
+      "data" : "hejhejehj",
+      "type" : "LISAMessage"
+   },
+   "messageHeader" : {
+      "ID" : "2223",
+      "handshakeConfirmation" : true,
+      "history" : "history!!",
+      "senderID" : "tomten",
+      "timeStamp" : "2016-04-28 20:11:55"
+   },
+   "name" : "kalle"
+  }
+}
