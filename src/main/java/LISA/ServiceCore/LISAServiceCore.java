@@ -17,7 +17,11 @@ import javax.jms.Session;
  *
  * @author Linus
  */
-public abstract class LISAServiceCore extends Subscriber {
+public abstract class LISAServiceCore extends Subscriber implements LISAServiceLlifeCycle {
+
+    public enum ServiceState {
+        INIT, ACTION, END, WAITING
+    }
 
     protected Publisher publisher = null;
     protected Connection connection = null;
@@ -49,14 +53,6 @@ public abstract class LISAServiceCore extends Subscriber {
         publisher = new Publisher(session, topicStr);
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Abstract Methods">
-    public abstract void init();
-
-    public abstract boolean action();
-
-    public abstract void end();
-
-    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     private void setSession(Session session) {
         this.session = session;
@@ -69,10 +65,5 @@ public abstract class LISAServiceCore extends Subscriber {
     public void setState(ServiceState state) {
         this.state = state;
     }
-
     //</editor-fold>
-    public enum ServiceState {
-        INIT, ACTION, END, WAITING
-    }
-
 }
