@@ -8,9 +8,7 @@ package LISA;
 import LISA.Message.LISAMessage;
 import LISA.ServiceCore.LISAServiceCore;
 import java.util.Date;
-
 import javax.jms.Connection;
-
 import javax.jms.Message;
 
 
