@@ -13,7 +13,7 @@ package LISA.Message;
  */
 public class LISAMessageHeader {
     private String ID;
-    private String timeStamp;
+    private long timeStamp;
     private String history;
     private String senderID;
     private boolean handshakeConfirmation;
@@ -27,11 +27,11 @@ public class LISAMessageHeader {
         this.ID = ID;
     }
 
-    public String getTimeStamp() {
+    public long getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
     }
 

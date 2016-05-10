@@ -5,6 +5,11 @@
  */
 package LISA.Message;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
@@ -18,13 +23,21 @@ public class LISAMessage {
 
     private LISAMessageHeader messageHeader;
     private LISAMessageBody messageBody;
-    private String name;
+
 
     
     
     public LISAMessage() {
-        this.messageHeader = new LISAMessageHeader();
-        this.messageBody = new LISAMessageBody();
+        try {
+            this.messageHeader = new LISAMessageHeader();
+            this.messageBody = new LISAMessageBody();
+            messageHeader.setSenderID(InetAddress.getLocalHost().getHostAddress());
+            Date date = new Date();
+            messageHeader.setTimeStamp(date.getTime());
+            messageHeader.setID(date.getTime() + "+" + InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(LISAMessage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
@@ -43,12 +56,15 @@ public class LISAMessage {
     public void setMessageBody(LISAMessageBody messageBody) {
         this.messageBody = messageBody;
     }
-    public String getName() {
-        return name;
+    
+    public void setMsgData(String data, String type) {
+        this.messageBody.setData(data);
+        this.messageBody.setType(type);
+    }
+    
+    public String getMsgData() {
+        return messageBody.getData();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
     //</editor-fold>
 }

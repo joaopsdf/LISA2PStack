@@ -5,14 +5,14 @@
  */
 package LISA;
 
+import LISA.Message.LISAMessage;
 import LISA.ServiceCore.LISAServiceCore;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
+
 import javax.jms.Connection;
-import javax.jms.JMSException;
+
 import javax.jms.Message;
-import javax.jms.TextMessage;
+
 
 /**
  *
@@ -20,7 +20,6 @@ import javax.jms.TextMessage;
  */
 public class LISAService1 extends LISAServiceCore {
 
-    private int n = 0;
 
     public LISAService1(Connection connection, String topicStr) {
         super(connection, topicStr);
@@ -29,19 +28,7 @@ public class LISAService1 extends LISAServiceCore {
 
     @Override
     public void onMessage(Message message) {
-
-        try {
-            if (message instanceof TextMessage) {
-                TextMessage textMessage = (TextMessage) message;
-                String text = textMessage.getText();
-                System.out.println(text);
-                
-
-            }
-        } catch (JMSException ex) {
-            Logger.getLogger(LISAService1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
     }
 
 
@@ -49,20 +36,18 @@ public class LISAService1 extends LISAServiceCore {
     @Override
     public boolean action() {
         
-        List<String> values = dataMapping.get(serviceID);
-        //System.out.println(serviceID);
-        for (int i = 0; i < values.size(); i++) {
-            System.out.println("Jag är s1, jag fick :" + values.remove(i));
-        }
+        LISAMessage msgToSend = new LISAMessage();
         
+        msgToSend.setMsgData("data that will be sent " + (new Date()).getTime(), "typeOfMsg");
         
+        publisher.sendMsg(msgToSend);
 
         return false;
     }
 
     @Override
     public void end() {
-        System.out.println("End of " + this.getClass());
+        
     }
 
 }

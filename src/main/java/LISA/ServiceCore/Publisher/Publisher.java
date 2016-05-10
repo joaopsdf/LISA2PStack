@@ -44,7 +44,7 @@ public class Publisher {
             publisher.send(message);
             
             //Output to the user
-            System.out.println("Sent message: " + message.getText());
+            //System.out.println("Sent message: " + message.getText());
         } catch (JMSException e) {
             e.printStackTrace();
         }

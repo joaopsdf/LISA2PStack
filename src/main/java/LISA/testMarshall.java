@@ -15,14 +15,10 @@ import LISA.Utils.*;
 public class testMarshall {
     public static void main(String[] args) {
         LISAMessage msg = new LISAMessage();
-        msg.setName("kalle");
-        msg.getMessageBody().setData("MSGdata");
-        msg.getMessageBody().setType("LISAMessage");
-        msg.getMessageHeader().setHandshakeConfirmation(true);
-        msg.getMessageHeader().setID("2223");
-        msg.getMessageHeader().setTimeStamp("2016-04-28 20:11:55");
-        msg.getMessageHeader().setHistory("history!!");
-        msg.getMessageHeader().setSenderID("tomten");
+        msg.setMsgData("MSGdata", "data");
+        //msg.getMessageHeader().setTimeStamp("2016-04-28 20:11:55");
+        //msg.getMessageHeader().setHistory("history!!");
+        //msg.getMessageHeader().setSenderID("tomten");
         
         String a = LISAMarshaller.marshallObj(msg);
         System.out.println(a);
@@ -30,6 +26,6 @@ public class testMarshall {
         
         LISAMessage msg2 = (LISAMessage)LISAMarshaller.unMarshall(LISAMessage.class, a);
         
-        System.out.println(msg2.getMessageBody().getData());
+        System.out.println("\n" + msg2.getMsgData());
     }
 }

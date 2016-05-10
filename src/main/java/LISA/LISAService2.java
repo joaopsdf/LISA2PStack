@@ -5,7 +5,9 @@
  */
 package LISA;
 
+import LISA.Message.LISAMessage;
 import LISA.ServiceCore.LISAServiceCore;
+import LISA.Utils.LISAMarshaller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jms.Connection;
@@ -19,7 +21,6 @@ import javax.jms.TextMessage;
  */
 public class LISAService2 extends LISAServiceCore {
 
-    private int n = 0;
 
     public LISAService2(Connection connection, String topicStr) {
         super(connection, topicStr);
@@ -33,13 +34,8 @@ public class LISAService2 extends LISAServiceCore {
             if (message instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) message;
                 String text = textMessage.getText();
-                System.out.println(text);
-                if (text.equals("s2")) {
-                    dataMapping.put("s1", "hej");
-                    dataMapping.put("s1", "hej2");
-                }
-                
-
+                LISAMessage msg = (LISAMessage)LISAMarshaller.unMarshall(LISAMessage.class, text);
+                System.out.println(msg.getMsgData());             
             }
         } catch (JMSException ex) {
             Logger.getLogger(LISAService1.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,8 +47,6 @@ public class LISAService2 extends LISAServiceCore {
 
     @Override
     public boolean action() {
-
-        //System.out.println("action for " + this);
 
         return false;
     }
