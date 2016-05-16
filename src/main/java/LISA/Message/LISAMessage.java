@@ -5,9 +5,12 @@
  */
 package LISA.Message;
 
+
+import LISA.Message.LISAMessageBody.KeyPairValue;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -23,9 +26,6 @@ public class LISAMessage {
 
     private LISAMessageHeader messageHeader;
     private LISAMessageBody messageBody;
-
-
-    
     
     public LISAMessage() {
         try {
@@ -58,13 +58,11 @@ public class LISAMessage {
     }
     
     public void setMsgData(String data, String type) {
-        this.messageBody.setData(data);
-        this.messageBody.setType(type);
+        this.messageBody.addKeyPairValue(data, type);
     }
     
-    public String getMsgData() {
-        return messageBody.getData();
+    public LinkedList<KeyPairValue> getMsgData() {
+        return messageBody.getKeyPairValues();
     }
-
     //</editor-fold>
 }

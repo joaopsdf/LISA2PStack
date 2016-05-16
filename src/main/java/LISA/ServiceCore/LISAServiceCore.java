@@ -8,7 +8,6 @@ package LISA.ServiceCore;
 import LISA.ServiceCore.Publisher.Publisher;
 import LISA.ServiceCore.Subscriber.Subscriber;
 import com.google.common.collect.ListMultimap;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jms.Connection;
