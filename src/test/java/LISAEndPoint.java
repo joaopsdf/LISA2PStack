@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LISA;
 
 //import LISA.EndPointCore.*;
 import LISA.EndPointCore.LISAEndPointCore;

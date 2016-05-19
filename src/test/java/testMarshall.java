@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LISA;
 
+
+import LISA.Message.KeyPairValue;
 import LISA.Message.LISAMessage;
 import LISA.Utils.*;
+import java.util.LinkedList;
 
 /**
  *
@@ -15,10 +17,17 @@ import LISA.Utils.*;
 public class testMarshall {
     public static void main(String[] args) {
         LISAMessage msg = new LISAMessage();
-        msg.setMsgData("MSGdata", "data");
-        //msg.getMessageHeader().setTimeStamp("2016-04-28 20:11:55");
-        //msg.getMessageHeader().setHistory("history!!");
-        //msg.getMessageHeader().setSenderID("tomten");
+        //msg.setMsgData("MSGdata", "data");
+        
+        LinkedList<KeyPairValue> list = new LinkedList<KeyPairValue> ();
+        
+        list.add(new KeyPairValue("temperatur", "256.25"));
+        list.add(new KeyPairValue("quantity", "36"));
+        
+        msg.setMsgData(list);
+        
+        System.out.println(msg.getMsgData().getFirst().getData());
+
         
         String a = LISAMarshaller.marshallObj(msg);
         System.out.println(a);
@@ -26,6 +35,6 @@ public class testMarshall {
         
         LISAMessage msg2 = (LISAMessage)LISAMarshaller.unMarshall(LISAMessage.class, a);
         
-        System.out.println("\n" + msg2.getMsgData());
+        System.out.println("\n" + msg2.getMsgData().getFirst().getData());
     }
 }

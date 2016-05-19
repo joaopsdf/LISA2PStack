@@ -5,7 +5,6 @@
  */
 package LISA.EndPointCore;
 
-import LISA.LISAEndPoint;
 import LISA.ServiceCore.LISAServiceCore;
 import LISA.ServiceCore.LISAServiceCore.ServiceState;
 import LISA.Utils.Config.Config;
@@ -69,18 +68,18 @@ public class LISAEndPointCore implements Runnable {
     public void run() {
         while (true) {
             for (Entry<String, LISAServiceCore> entry : services.entrySet()) {
-                
+
                 String key = entry.getKey();
                 LISAServiceCore s = entry.getValue();
                 ServiceState state = s.getState();
-                
+
                 if (state.equals(ServiceState.SETUP)) {
                     s.serviceSetup();
                     s.setDataMap(dataMapping);
                     s.setServiceID(key);
                     s.setState(ServiceState.STARTUP);
                 }
-                if(state.equals(ServiceState.STARTUP)) {
+                if (state.equals(ServiceState.STARTUP)) {
                     s.onStart();
                     s.setState(ServiceState.ACTION);
                 }

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LISA;
 
+
+
+import LISA.Message.KeyPairValue;
 import LISA.Message.LISAMessage;
 import LISA.ServiceCore.LISAServiceCore;
 import LISA.Utils.LISAMarshaller;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jms.Connection;
@@ -35,7 +38,12 @@ public class LISAService2 extends LISAServiceCore {
                 TextMessage textMessage = (TextMessage) message;
                 String text = textMessage.getText();
                 LISAMessage msg = (LISAMessage)LISAMarshaller.unMarshall(LISAMessage.class, text);
-                System.out.println(msg.getMsgData());             
+                
+                LinkedList<KeyPairValue> list = msg.getMsgData();
+                
+                for (KeyPairValue keyPairValue : list) {
+                    System.out.println(keyPairValue);
+                }
             }
         } catch (JMSException ex) {
             Logger.getLogger(LISAService1.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,7 +53,7 @@ public class LISAService2 extends LISAServiceCore {
 
     @Override
     public void onStart() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

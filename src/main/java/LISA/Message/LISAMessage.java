@@ -6,7 +6,7 @@
 package LISA.Message;
 
 
-import LISA.Message.LISAMessageBody.KeyPairValue;
+import LISA.Message.KeyPairValue;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
@@ -57,8 +57,8 @@ public class LISAMessage {
         this.messageBody = messageBody;
     }
     
-    public void setMsgData(String data, String type) {
-        this.messageBody.addKeyPairValue(data, type);
+    public void setMsgData(LinkedList<KeyPairValue> keyPairValues) {
+        this.messageBody.addKeyPairValues(keyPairValues);
     }
     
     public LinkedList<KeyPairValue> getMsgData() {
