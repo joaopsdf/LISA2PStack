@@ -9,15 +9,19 @@ import LISA.ServiceCore.LISAOneShotService;
 import javax.jms.Connection;
 import javax.jms.Message;
 
-
 /**
  *
  * @author jpdsf
  */
-public class LISAServiceTest extends LISAOneShotService{
+public class LISAServiceTest extends LISAOneShotService {
 
     public LISAServiceTest(Connection connection, String topicIn) {
         super(connection, topicIn);
+    }
+
+    @Override
+    public void onStart() {
+        
     }
 
     @Override
@@ -29,5 +33,5 @@ public class LISAServiceTest extends LISAOneShotService{
     public void onMessage(Message message) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

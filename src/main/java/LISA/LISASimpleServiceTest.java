@@ -13,19 +13,24 @@ import javax.jms.Message;
  *
  * @author jpdsf
  */
-public class LISASimpleServiceTest extends LISASimpleService{
+public class LISASimpleServiceTest extends LISASimpleService {
 
     public LISASimpleServiceTest(Connection connection, String topicIn) {
         super(connection, topicIn);
     }
 
     @Override
-    public void onMessage(Message message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void onStart() {
+
     }
-    
-    private void sendM(){
+
+    @Override
+    public void onMessage(Message message) {
+        
+    }
+
+    private void sendM() {
         publisher.sendMsg(null);
     }
-    
+
 }

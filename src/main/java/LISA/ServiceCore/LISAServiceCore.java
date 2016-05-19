@@ -21,7 +21,7 @@ import javax.jms.Session;
 public abstract class LISAServiceCore extends Subscriber implements LISAServiceLlifeCycle {
 
     public enum ServiceState {
-        INIT, ACTION, END, WAITING
+        SETUP, STARTUP, ACTION, END, WAITING
     }
 
     protected Publisher publisher = null;
@@ -34,11 +34,11 @@ public abstract class LISAServiceCore extends Subscriber implements LISAServiceL
     public LISAServiceCore(Connection connection, String topicIn) {
         this.connection = connection;
         this.topicStr = topicIn;
-        this.state = ServiceState.INIT;
+        this.state = ServiceState.SETUP;
 
     }
 
-    public void init() {
+    public void serviceSetup() {
         createSession();
         createPublisher();
         createSubscriber(topicStr);

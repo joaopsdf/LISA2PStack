@@ -29,7 +29,10 @@ public class LISAService1 extends LISAServiceCore {
         
     }
 
-
+    @Override
+    public void onStart() {
+        
+    }
 
     @Override
     public boolean action() {
@@ -47,5 +50,7 @@ public class LISAService1 extends LISAServiceCore {
     public void end() {
         
     }
+
+    
 
 }

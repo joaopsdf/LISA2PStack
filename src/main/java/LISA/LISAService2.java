@@ -43,7 +43,10 @@ public class LISAService2 extends LISAServiceCore {
 
     }
 
-
+    @Override
+    public void onStart() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public boolean action() {
@@ -55,5 +58,7 @@ public class LISAService2 extends LISAServiceCore {
     public void end() {
         System.out.println("End of " + this.getClass());
     }
+
+    
 
 }

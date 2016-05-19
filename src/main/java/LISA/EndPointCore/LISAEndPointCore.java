@@ -74,10 +74,14 @@ public class LISAEndPointCore implements Runnable {
                 LISAServiceCore s = entry.getValue();
                 ServiceState state = s.getState();
                 
-                if (state.equals(ServiceState.INIT)) {
-                    s.init();
+                if (state.equals(ServiceState.SETUP)) {
+                    s.serviceSetup();
                     s.setDataMap(dataMapping);
                     s.setServiceID(key);
+                    s.setState(ServiceState.STARTUP);
+                }
+                if(state.equals(ServiceState.STARTUP)) {
+                    s.onStart();
                     s.setState(ServiceState.ACTION);
                 }
                 if (state.equals(ServiceState.ACTION)) {
