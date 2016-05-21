@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 public class LISAMessageBody {
 
-    LinkedList<KeyPairValue> keyPairValues = new LinkedList<>();
+    private LinkedList<KeyPairValue> keyPairValues = new LinkedList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
 //    public LinkedList<KeyPairValue> getKeyPairValues() {
