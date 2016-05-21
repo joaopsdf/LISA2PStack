@@ -9,6 +9,8 @@ import LISA.Message.LISAMessage;
 import LISA.ServiceCore.LISAServiceCore;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jms.Connection;
 import javax.jms.Message;
 
@@ -41,10 +43,18 @@ public class LISAService1 extends LISAServiceCore {
         LinkedList<KeyPairValue> dataList = new LinkedList<KeyPairValue>();
 
         dataList.add(new KeyPairValue("time", " " + (new Date()).getTime()));
+        dataList.add(new KeyPairValue("a", "test1"));
+        dataList.add(new KeyPairValue("b", "test2"));
 
-        msgToSend.setMsgData(dataList);
+        msgToSend.getMessageBody().setKeyPairValues(dataList);
+        
 
         publisher.sendMsg(msgToSend);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(LISAService1.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return false;
     }

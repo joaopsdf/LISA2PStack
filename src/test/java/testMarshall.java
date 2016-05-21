@@ -24,9 +24,9 @@ public class testMarshall {
         list.add(new KeyPairValue("temperatur", "256.25"));
         list.add(new KeyPairValue("quantity", "36"));
         
-        msg.setMsgData(list);
+        msg.getMessageBody().setKeyPairValues(list);
         
-        System.out.println(msg.getMsgData().getFirst().getData());
+        //System.out.println(msg.getMsgData().getFirst().getData());
 
         
         String a = LISAMarshaller.marshallObj(msg);
@@ -35,6 +35,8 @@ public class testMarshall {
         
         LISAMessage msg2 = (LISAMessage)LISAMarshaller.unMarshall(LISAMessage.class, a);
         
-        System.out.println("\n" + msg2.getMsgData().getFirst().getData());
+        System.out.println(LISAMarshaller.marshallObj(msg2));
+        
+        System.out.println("\n" + msg2);
     }
 }

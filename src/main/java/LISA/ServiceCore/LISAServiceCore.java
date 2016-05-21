@@ -26,28 +26,49 @@ public abstract class LISAServiceCore extends Subscriber implements LISAServiceL
 
     protected Publisher publisher = null;
     protected Connection connection = null;
-    protected String topicStr;
+    protected String topicStrSub, topicStrPub;
     protected ServiceState state;
     protected String serviceID;
     public ListMultimap<String, String> dataMapping;
 
+    /**
+     * Use this constructor to run the subscriber and the publisher on the same topic
+     *
+     * @param connection Connection to the activemq buss
+     * @param topicIn Name of the topic you want the subscriber and publisher to
+     * have
+     */
     public LISAServiceCore(Connection connection, String topicIn) {
         this.connection = connection;
-        this.topicStr = topicIn;
+        this.topicStrSub = topicIn;
+        this.topicStrPub = topicIn;
         this.state = ServiceState.SETUP;
 
+    }
+    /**
+     * Use this constructor to run the subscriber and the publisher on different topics
+     * 
+     * @param connection Connection to the activemq buss from LISAEndPointCore
+     * @param topicInSub Name of the topic you want the subscriber to subscribe on
+     * @param topicInPub Name of the topic you want the publisher to publish on
+     */
+    public LISAServiceCore(Connection connection, String topicInSub, String topicInPub) {
+        this.connection = connection;
+        this.topicStrSub = topicInSub;
+        this.topicStrPub = topicInPub;
+        this.state = ServiceState.SETUP;
     }
 
     public void serviceSetup() {
         createSession();
-        createPublisher();
-        createSubscriber(topicStr);
+        createPublisher(topicStrPub);
+        createSubscriber(topicStrSub);
     }
 
     private void createSession() {
         try {
-            if (connection != null) {
-                Session sessionNew = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            if (this.connection != null) {
+                Session sessionNew = this.connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
                 setSession(sessionNew);
             }
         } catch (JMSException ex) {
@@ -56,8 +77,8 @@ public abstract class LISAServiceCore extends Subscriber implements LISAServiceL
 
     }
 
-    private void createPublisher() {
-        publisher = new Publisher(session, topicStr);
+    private void createPublisher(String topicIn) {
+        this.publisher = new Publisher(this.session, topicIn);
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
@@ -66,17 +87,19 @@ public abstract class LISAServiceCore extends Subscriber implements LISAServiceL
     }
 
     public ServiceState getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(ServiceState state) {
         this.state = state;
     }
+
     public void setDataMap(ListMultimap map) {
         this.dataMapping = map;
     }
+
     public String getServiceID() {
-        return serviceID;
+        return this.serviceID;
     }
 
     public void setServiceID(String serviceID) {

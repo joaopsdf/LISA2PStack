@@ -39,10 +39,12 @@ public class LISAService2 extends LISAServiceCore {
                 String text = textMessage.getText();
                 LISAMessage msg = (LISAMessage)LISAMarshaller.unMarshall(LISAMessage.class, text);
                 
-                LinkedList<KeyPairValue> list = msg.getMsgData();
-                
+                LinkedList<KeyPairValue> list = msg.getMessageBody().getKeyPairValues();
+                int i = 0;
                 for (KeyPairValue keyPairValue : list) {
                     System.out.println(keyPairValue);
+                    System.out.println(i);
+                    i++;
                 }
             }
         } catch (JMSException ex) {

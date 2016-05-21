@@ -22,9 +22,9 @@ public abstract class Subscriber implements MessageListener{
     protected Session session;
     private Topic topic;
     
-    public void createSubscriber(String topicStr) {
+    public void createSubscriber(String topicIn) {
         try {
-            topic = session.createTopic(topicStr);
+            topic = session.createTopic(topicIn);
             subscriber = session.createConsumer(topic);
             subscriber.setMessageListener(this);
             

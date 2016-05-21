@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 public class LISAMessageBody {
 
-    private LinkedList<KeyPairValue> keyPairValues = new LinkedList<>();
+    LinkedList<KeyPairValue> keyPairValues = new LinkedList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
 //    public LinkedList<KeyPairValue> getKeyPairValues() {
@@ -35,11 +35,13 @@ public class LISAMessageBody {
         return keyPairValues;
     }
 
-    public void addKeyPairValues(LinkedList<KeyPairValue> keyPairValues) {
-        this.keyPairValues.addAll(keyPairValues);
+    public void setKeyPairValues(LinkedList<KeyPairValue> keyPairValues) {
+        this.keyPairValues = keyPairValues;
     }
 
 
-    
+    public void addKeyPairValues(LinkedList<KeyPairValue> keyPairValues) {
+        this.keyPairValues.addAll(keyPairValues);
+    }
 
 }

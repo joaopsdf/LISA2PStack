@@ -5,7 +5,6 @@
  */
 package LISA.Message;
 
-
 import LISA.Message.KeyPairValue;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -15,22 +14,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
-
 /**
  *
  * @author Linus
  */
-@XmlRootElement
+@XmlRootElement(name = "lisaMessage")
 public class LISAMessage {
 
-    private LISAMessageHeader messageHeader;
-    private LISAMessageBody messageBody;
-    
+    private LISAMessageHeader messageHeader = new LISAMessageHeader();
+    private LISAMessageBody messageBody = new LISAMessageBody();
+    private LinkedList<KeyPairValue> msgData = new LinkedList<>();
+
     public LISAMessage() {
         try {
-            this.messageHeader = new LISAMessageHeader();
-            this.messageBody = new LISAMessageBody();
+
             messageHeader.setSenderID(InetAddress.getLocalHost().getHostAddress());
             Date date = new Date();
             messageHeader.setTimeStamp(date.getTime());
@@ -48,7 +45,6 @@ public class LISAMessage {
     public void setMessageHeader(LISAMessageHeader messageHeader) {
         this.messageHeader = messageHeader;
     }
-
     public LISAMessageBody getMessageBody() {
         return messageBody;
     }
@@ -56,13 +52,21 @@ public class LISAMessage {
     public void setMessageBody(LISAMessageBody messageBody) {
         this.messageBody = messageBody;
     }
+
+//    public LinkedList<KeyPairValue> getMsgData() {
+//        return msgData;
+//    }
+//
+//    public void setMsgData(LinkedList<KeyPairValue> msgData) {
+//        this.msgData = msgData;
+//    }
+//    
+//    public void addMsgData(LinkedList<KeyPairValue> msgData) {
+//        this.msgData.addAll(msgData);
+//    }
     
-    public void setMsgData(LinkedList<KeyPairValue> keyPairValues) {
-        this.messageBody.addKeyPairValues(keyPairValues);
-    }
-    
-    public LinkedList<KeyPairValue> getMsgData() {
-        return messageBody.getKeyPairValues();
-    }
+
     //</editor-fold>
+
+    
 }
