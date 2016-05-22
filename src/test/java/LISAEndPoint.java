@@ -18,8 +18,8 @@ public class LISAEndPoint extends LISAEndPointCore {
 
         Connection connection = createConnection();
 
-        LISAService1 s1 = new LISAService1(connection, "test");
-        LISAService2 s2 = new LISAService2(connection, "test");
+        LISAService1 s1 = new LISAService1(connection, "test.a", "test.a");
+        LISAService2 s2 = new LISAService2(connection, "test.b", "test.b");
 
         services.put("s1", s1);
         services.put("s2", s2);

@@ -25,8 +25,8 @@ import javax.jms.TextMessage;
 public class LISAService2 extends LISAServiceCore {
 
 
-    public LISAService2(Connection connection, String topicStr) {
-        super(connection, topicStr);
+    public LISAService2(Connection connection, String topicStr, String topicStr2) {
+        super(connection, topicStr, topicStr2);
 
     }
 

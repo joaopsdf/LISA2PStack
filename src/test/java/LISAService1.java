@@ -20,8 +20,8 @@ import javax.jms.Message;
  */
 public class LISAService1 extends LISAServiceCore {
 
-    public LISAService1(Connection connection, String topicStr) {
-        super(connection, topicStr);
+    public LISAService1(Connection connection, String topicStr, String topicStr2) {
+        super(connection, topicStr, topicStr2);
 
     }
 
