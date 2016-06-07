@@ -23,7 +23,6 @@ public class LISAMessage {
 
     private LISAMessageHeader messageHeader = new LISAMessageHeader();
     private LISAMessageBody messageBody = new LISAMessageBody();
-    private LinkedList<KeyPairValue> msgData = new LinkedList<>();
 
     public LISAMessage() {
         try {
@@ -45,6 +44,7 @@ public class LISAMessage {
     public void setMessageHeader(LISAMessageHeader messageHeader) {
         this.messageHeader = messageHeader;
     }
+
     public LISAMessageBody getMessageBody() {
         return messageBody;
     }
@@ -53,20 +53,6 @@ public class LISAMessage {
         this.messageBody = messageBody;
     }
 
-//    public LinkedList<KeyPairValue> getMsgData() {
-//        return msgData;
-//    }
-//
-//    public void setMsgData(LinkedList<KeyPairValue> msgData) {
-//        this.msgData = msgData;
-//    }
-//    
-//    public void addMsgData(LinkedList<KeyPairValue> msgData) {
-//        this.msgData.addAll(msgData);
-//    }
-    
 
     //</editor-fold>
-
-    
 }

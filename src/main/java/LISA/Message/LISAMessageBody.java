@@ -15,22 +15,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class LISAMessageBody {
 
     private LinkedList<KeyPairValue> keyPairValues = new LinkedList<>();
+    private String type;
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
-//    public LinkedList<KeyPairValue> getKeyPairValues() {
-//        return keyPairValues;
-//    }
-//
-//    public Boolean setKeyPairValue(String data, String type) {
-//        try {
-//            keyPairValues.add(new KeyPairValue(type, data));
-//            return true;
-//        } catch (Exception e) {
-//        }
-//        return false;
-//    }
-    //</editor-fold>
-
     public LinkedList<KeyPairValue> getKeyPairValues() {
         return keyPairValues;
     }
@@ -39,9 +26,17 @@ public class LISAMessageBody {
         this.keyPairValues = keyPairValues;
     }
 
-
     public void addKeyPairValues(LinkedList<KeyPairValue> keyPairValues) {
         this.keyPairValues.addAll(keyPairValues);
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    //</editor-fold>
 }

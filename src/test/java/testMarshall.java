@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 import LISA.Message.KeyPairValue;
 import LISA.Message.LISAMessage;
 import LISA.Utils.*;
@@ -15,25 +14,24 @@ import java.util.LinkedList;
  * @author Linus
  */
 public class testMarshall {
+
     public static void main(String[] args) {
         LISAMessage msg = new LISAMessage();
         //msg.setMsgData("MSGdata", "data");
         
-        LinkedList<KeyPairValue> list = new LinkedList<KeyPairValue> ();
+        LinkedList<KeyPairValue> list = new LinkedList<KeyPairValue>();
         
         list.add(new KeyPairValue("temperatur", "256.25"));
         list.add(new KeyPairValue("quantity", "36"));
         
         msg.getMessageBody().setKeyPairValues(list);
-        
-        //System.out.println(msg.getMsgData().getFirst().getData());
+        msg.getMessageBody().setType("notify");
 
-        
+        //System.out.println(msg.getMsgData().getFirst().getData());
         String a = LISAMarshaller.marshallObj(msg);
         System.out.println(a);
         
-        
-        LISAMessage msg2 = (LISAMessage)LISAMarshaller.unMarshall(LISAMessage.class, a);
+        LISAMessage msg2 = (LISAMessage) LISAMarshaller.unMarshall(LISAMessage.class, a);
         
         System.out.println(LISAMarshaller.marshallObj(msg2));
         
