@@ -27,6 +27,8 @@ public class LISAEndPointCore implements Runnable {
 
     private static LISAEndPointCore instance = null;
     private static String url;
+    private static String username;
+    private static String password;
     private static ActiveMQConnectionFactory connectionFactory = null;
     private static Connection connection = null;
     private static Config config = null;
@@ -37,6 +39,8 @@ public class LISAEndPointCore implements Runnable {
     protected LISAEndPointCore() {
         config = ConfigFunctions.getConfig();
         setUrl("tcp://" + config.getIp() + ":" + config.getPort());
+        setUsername(config.getUsername());
+        setPassword(config.getPassword());
     }
 
     public static LISAEndPointCore getInstanceCore() {
@@ -48,13 +52,23 @@ public class LISAEndPointCore implements Runnable {
         return instance;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public static void setUrl(String url) {
+        LISAEndPointCore.url = url;
     }
+
+    public static void setUsername(String username) {
+        LISAEndPointCore.username = username;
+    }
+
+    public static void setPassword(String password) {
+        LISAEndPointCore.password = password;
+    }
+    
+    
 
     public static Connection createConnection() {
         try {
-            connectionFactory = new ActiveMQConnectionFactory(url);
+            connectionFactory = new ActiveMQConnectionFactory(username, password, url);
             connection = connectionFactory.createConnection();
             connection.start();
 
