@@ -39,4 +39,16 @@ public class LISAMessageBody {
     }
 
     //</editor-fold>
+    
+    @Override
+    public String toString() {
+        
+        String keysStr = new String();
+        
+        for (KeyPairValue keyPairValue : keyPairValues) {
+            keysStr = keysStr + "Type: " + keyPairValue.getType() + " Data: " + keyPairValue.getData() + "\n";
+        }
+        
+        return "----------Body----------\n" + "BodyType: " + this.getType() + "\n" + keysStr;
+    }
 }

@@ -18,6 +18,8 @@ public class LISAMessageHeader {
     private String senderID;
     private boolean handshakeConfirmation;
     
+    
+    
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public String getID() {
         return ID;
@@ -59,4 +61,10 @@ public class LISAMessageHeader {
         this.handshakeConfirmation = handshakeConfirmation;
     }
     //</editor-fold>
+    
+    @Override
+    public String toString() {
+        
+        return "----------Header----------\n" + "ID: " + this.getID() + "\nTimestamp: " + this.getTimeStamp() + "\nHistory: " + this.getHistory() + "\nSenderID: " + this.getSenderID() + "\nHandshake: " + this.isHandshakeConfirmation();
+    }
 }

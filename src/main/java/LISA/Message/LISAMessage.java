@@ -55,4 +55,10 @@ public class LISAMessage {
 
 
     //</editor-fold>
+    
+    @Override
+    public String toString() {
+        return this.getMessageHeader().toString() + this.getMessageBody().toString();
+    }
+    
 }
