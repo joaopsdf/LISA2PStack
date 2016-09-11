@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Endpoint_logeater;
+package EndpointLogeater;
 
 import LISA.EndPointCore.LISAEndPointCore;
 import javax.jms.Connection;

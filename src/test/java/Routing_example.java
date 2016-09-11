@@ -54,7 +54,7 @@ public final class Routing_example {
         // START SNIPPET: e3
         context.addRoutes(new RouteBuilder() {
             public void configure() {
-                from("test-jms:topic:test.b").to("test-jms:topic:test.a");
+                from("test-jms:topic:test").to("test-jms:topic:a");
             }
         });
         

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Endpoint_logeater;
+package EndpointLogeater;
 
 import LISA.Message.KeyPairValue;
 import LISA.Message.LISAMessage;
@@ -36,7 +36,7 @@ public class LogeaterService extends LISAServiceCore {
     @Override
     public void onStart() {
 
-        strFile = FileFunctions.readFile("src/test/java/Endpoint_logeater/prodE.txt").split("\n");
+        strFile = FileFunctions.readFile("src/test/java/EndpointLogeater/prodE.txt").split("\n");
 
         String[] tempStr;
 

@@ -1,4 +1,4 @@
-package EndPoint1;
+package EndPointTest;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
