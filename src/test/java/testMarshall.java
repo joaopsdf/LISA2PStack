@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-import LISA.Message.KeyPairValue;
 import LISA.Message.LISAMessage;
 import LISA.Utils.*;
 import java.util.LinkedList;
+import LISA.Message.KeyPairValue;
 
 /**
  *

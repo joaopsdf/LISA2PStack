@@ -10,7 +10,7 @@ package LISA.ServiceCore;
  * @author Linus
  */
 public interface LISAServiceLlifeCycle {
-
+    
     public abstract void onStart();
     
     public abstract boolean action();

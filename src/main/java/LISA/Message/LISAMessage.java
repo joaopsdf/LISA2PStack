@@ -5,11 +5,9 @@
  */
 package LISA.Message;
 
-import LISA.Message.KeyPairValue;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
