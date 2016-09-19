@@ -22,11 +22,7 @@
             <version>2.6.2</version>
             <type>jar</type>
         </dependency>
-        <dependency>
-            <groupId>com.google.collections</groupId>
-            <artifactId>google-collections</artifactId>
-            <version>1.0-rc2</version>
-        </dependency>
+        
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
@@ -50,7 +46,7 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>2.4.0</version>
+            <version>2.3.2</version>
         </dependency>
     </dependencies>
     <properties>

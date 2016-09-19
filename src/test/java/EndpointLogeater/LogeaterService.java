@@ -12,6 +12,8 @@ import LISA.Utils.FileFunctions;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jms.Connection;
 import javax.jms.Message;
 
@@ -72,14 +74,23 @@ public class LogeaterService extends LISAServiceCore {
             datalist.add(new KeyPairValue("data10", tempStrArr[9]));
 
             logMsg.getMessageBody().setKeyPairValues(datalist);
-            
+            logMsg.getMessageBody().setType("Scania-testdata");
+
             System.out.println(logMsg.toString());
 
             strList.remove(0);
+            
+            publisher.sendMsg(logMsg);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LogeaterService.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return false;
         }
 
         return true;
+
     }
 
     @Override

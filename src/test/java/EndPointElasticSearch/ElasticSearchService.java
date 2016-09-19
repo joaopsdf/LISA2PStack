@@ -6,41 +6,80 @@
 package EndPointElasticSearch;
 
 import LISA.ServiceCore.LISAServiceCore;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jms.Connection;
+import javax.jms.JMSException;
 import javax.jms.Message;
+import javax.jms.TextMessage;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
  *
  * @author Linus
  */
-public class ElasticSearchService extends LISAServiceCore{
+public class ElasticSearchService extends LISAServiceCore {
 
     Client client;
-    
-    
+    Settings settings;
+
     public ElasticSearchService(Connection connection, String topicIn) {
         super(connection, topicIn);
     }
 
     @Override
     public void onMessage(Message message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Got something");
+
+        if (message instanceof TextMessage) {
+            try {
+                TextMessage textMessage = (TextMessage) message;
+                String text = textMessage.getText();
+                System.out.println(text);
+//                IndexResponse response = client.prepareIndex("lisa", "buss").setSource(text).get();
+                
+                
+                IndexResponse response = client.prepareIndex("lisa", "buss")
+                        .setSource(text)
+                        .get();
+                System.out.println(response.getIndex() + " " + response.getType() + " " + response.getId());
+
+            } catch (JMSException ex) {
+                Logger.getLogger(ElasticSearchService.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        }
+
     }
 
     @Override
     public void onStart() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            //Creating the connection to the elastic search
+            settings = Settings.settingsBuilder().put("cluster.name", "elasticsearch").build();
+            client = TransportClient.builder().settings(settings).build()
+                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(ElasticSearchService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public boolean action() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public void end() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
-    
+
 }

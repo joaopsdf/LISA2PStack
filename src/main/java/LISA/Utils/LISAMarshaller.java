@@ -64,7 +64,7 @@ public class LISAMarshaller {
      */
     
     public static Object unMarshall(Class c, String str) {
-        
+        System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
         try {
             JAXBContext jc = JAXBContext.newInstance(c);
             

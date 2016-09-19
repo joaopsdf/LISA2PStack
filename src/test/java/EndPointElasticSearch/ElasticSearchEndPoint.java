@@ -17,12 +17,11 @@ public class ElasticSearchEndPoint extends LISAEndPointCore {
         
         Connection connection = createConnection();
         
-        ElasticSearchService s1 = new ElasticSearchService(connection, "test.>");
+        ElasticSearchService s1 = new ElasticSearchService(connection, "test");
         
         services.put("ElasticSearchService", s1);
         
         endpointThread.start();
-        
         
     }
 }

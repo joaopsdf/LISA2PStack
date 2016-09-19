@@ -18,7 +18,7 @@ public class EndPoint_logeater extends LISAEndPointCore {
         
         Connection connection = createConnection();
         
-        LogeaterService logeaterService = new LogeaterService(connection, "test.x", "test.x");
+        LogeaterService logeaterService = new LogeaterService(connection, "test", "test");
         
         services.put("logeater", logeaterService);
         
