@@ -27,7 +27,7 @@ public abstract class LISAOneShotService extends LISAServiceCore{
 
     @Override
     public void end() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }  
     
 }
